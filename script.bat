@@ -32,11 +32,13 @@ if not exist "%dl%" mkdir "%dl%"
 :Menu
 cls
 :: Adding Title Later
-echo ===== Quick Installer v1.0.0 =====
+echo ===== Quick Installer v1.0.2 =====
 echo.
 echo 0 - None
 echo 1 - Primary URL
 echo 2 - Backup URL
+echo.
+echo Download Path - "%dl%"
 echo.
 echo ===== Browsers =====
 echo [A] Brave Browser [%aA%]
@@ -56,25 +58,27 @@ echo [K] Git [%aK%]
 echo [L] Git LFS  [%aL%]
 echo [M] GitHub Desktop [%aM%]
 echo.
-echo ===== Programming Languages =====
+echo ===== Programming =====
 echo [N] Node [%aN%]
 echo [O] Python 3 [%aO%]
+echo [P] VSCodium [%aP%]
 echo.
 echo ===== Virus Protection =====
-echo [P] Malwarebytes [%aP%]
-echo [Q] BitDefender [%aQ%]
+echo [Q] Malwarebytes [%aQ%]
+echo [R] BitDefender [%aR%]
 echo.
 echo ===== Gaming =====
-echo [R] Steam [%aR%]
+echo [S] Steam [%aS%]
 echo.
 
 :: Input
 echo Change values by entering the corresponding letter. Press Y to begin installing the applications.
 echo.
-choice /c ABCDEFGHIJKLMNOPQRY /m "" >nul
+choice /c ABCDEFGHIJKLMNOPQRSY /m "" >nul
 
 :: Input Handler
-if errorlevel 19 goto :download
+if errorlevel 20 goto :download
+if errorlevel 19 call :toggle aS
 if errorlevel 18 call :toggle aR
 if errorlevel 17 call :toggle aQ
 if errorlevel 16 call :toggle aP
@@ -103,7 +107,7 @@ if "!%1!"=="2" set "%1=0" & goto :Menu
 :: Input Handler - Install
 :download
 cls
-echo ===== Quick Installer v1.0.0 =====
+echo ===== Quick Installer v1.0.2 =====
 echo.
 echo [Status] Installing Selected Apps!
 echo.
@@ -251,29 +255,39 @@ if not "%aO%"=="0" (
 
 if not "%aP%"=="0" (
     if "%aP%"=="1" (
-        echo Downloading Malwarebytes [Primary URL]
-        curl -L -o "%dl%\Malwarebytes.exe" https://example.com/example.exe
+        echo Downloading VSCodium [Primary URL]
+        curl -L -o "%dl%\VSCodium.exe" https://example.com/example.exe
     ) else if "%aP%"=="2" (
-        echo Downloading Malwarebytes [Backup URL]
-        curl -L -o "%dl%\Malwarebytes.exe" https://gslibrary.github.io/Quick-Installer/dl/Malwarebytes.exe
+        echo Downloading VSCodium [Backup URL]
+        curl -L -o "%dl%\VSCodium.exe" https://gslibrary.github.io/Quick-Installer/dl/VSCodium.exe
     )
 )
 
 if not "%aQ%"=="0" (
     if "%aQ%"=="1" (
-        echo Downloading BitDefender [Primary URL]
-        curl -L -o "%dl%\BitDefender.exe" https://example.com/example.exe
+        echo Downloading Malwarebytes [Primary URL]
+        curl -L -o "%dl%\Malwarebytes.exe" https://example.com/example.exe
     ) else if "%aQ%"=="2" (
-        echo Downloading BitDefender [Backup URL]
-        curl -L -o "%dl%\BitDefender.exe" https://gslibrary.github.io/Quick-Installer/dl/BitDefender.exe
+        echo Downloading Malwarebytes [Backup URL]
+        curl -L -o "%dl%\Malwarebytes.exe" https://gslibrary.github.io/Quick-Installer/dl/Malwarebytes.exe
     )
 )
 
 if not "%aR%"=="0" (
     if "%aR%"=="1" (
+        echo Downloading BitDefender [Primary URL]
+        curl -L -o "%dl%\BitDefender.exe" https://example.com/example.exe
+    ) else if "%aR%"=="2" (
+        echo Downloading BitDefender [Backup URL]
+        curl -L -o "%dl%\BitDefender.exe" https://gslibrary.github.io/Quick-Installer/dl/BitDefender.exe
+    )
+)
+
+if not "%aS%"=="0" (
+    if "%aS%"=="1" (
         echo Downloading Steam [Primary URL]
         curl -L -o "%dl%\Steam.exe" https://example.com/example.exe
-    ) else if "%aR%"=="2" (
+    ) else if "%aS%"=="2" (
         echo Downloading Steam [Backup URL]
         curl -L -o "%dl%\Steam.exe" https://gslibrary.github.io/Quick-Installer/dl/Steam.exe
     )
@@ -281,6 +295,11 @@ if not "%aR%"=="0" (
 
 :: After Downloading Everything
 :install
+cls
+echo ===== Quick Installer v1.0.2 =====
+echo.
+echo [Status] Downloading Complete!
+echo.
 echo Installing with Quick Installer will be added soon.
 pause
 exit
