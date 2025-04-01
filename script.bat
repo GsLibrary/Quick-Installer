@@ -71,7 +71,7 @@ echo.
 :: Input
 echo Change values by entering the corresponding letter. Press Y to begin installing the applications.
 echo.
-choice /c ABCDEFGHIJKLMNOPQY /m "" >nul
+choice /c ABCDEFGHIJKLMNOPQRY /m "" >nul
 
 :: Input Handler
 if errorlevel 19 goto :download
