@@ -24,6 +24,7 @@ set "aN=0"
 set "aO=0"
 set "aP=0"
 set "aQ=0"
+set "aR=0"
 set "dl=%USERPROFILE%\Downloads\QuickInstaller"
 if not exist %dl% mkdir %dl%
 
@@ -63,6 +64,9 @@ echo ===== Virus Protection =====
 echo [P] Malwarebytes [%aP%]
 echo [Q] BitDefender [%aQ%]
 echo.
+echo ===== Gaming =====
+echo [R] Steam [%aR%]
+echo.
 
 :: Input
 echo Change values by entering the corresponding letter. Press Y to begin installing the applications.
@@ -70,7 +74,8 @@ echo.
 choice /c ABCDEFGHIJKLMNOPQY /m "" >nul
 
 :: Input Handler
-if errorlevel 18 goto :install
+if errorlevel 19 goto :install
+if errorlevel 18 call :toggle aR
 if errorlevel 17 call :toggle aQ
 if errorlevel 16 call :toggle aP
 if errorlevel 15 call :toggle aO
@@ -261,5 +266,15 @@ if not "%aQ%"=="0" (
     ) else if "%aQ%"=="2" (
         echo Downloading BitDefender [Backup URL]
         curl -L -o "%dl%\BitDefender.exe" https://gslibrary.github.io/Quick-Installer/dl/BitDefender.exe
+    )
+)
+
+if not "%aR%"=="0" (
+    if "%aR%"=="1" (
+        echo Downloading Steam [Primary URL]
+        curl -L -o "%dl%\Steam.exe" https://example.com/example.exe
+    ) else if "%aR%"=="2" (
+        echo Downloading Steam [Backup URL]
+        curl -L -o "%dl%\Steam.exe" https://gslibrary.github.io/Quick-Installer/dl/Steam.exe
     )
 )
