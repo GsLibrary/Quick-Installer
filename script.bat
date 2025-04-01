@@ -26,7 +26,7 @@ set "aP=0"
 set "aQ=0"
 set "aR=0"
 set "dl=%USERPROFILE%\Downloads\QuickInstaller"
-if not exist %dl% mkdir %dl%
+if not exist "%dl%" mkdir "%dl%"
 
 :: Menu
 :Menu
