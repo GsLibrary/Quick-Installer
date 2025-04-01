@@ -1,1 +1,2 @@
-powershell -Command "& {Invoke-WebRequest 'https://your-link.com/script.bat' -OutFile $env:TEMP\script.bat; Start-Process -FilePath $env:TEMP\script.bat -Wait}"
+$QI_URL = "https://gslibrary.github.io/Quick-Installer"
+powershell -Command "& {Invoke-WebRequest '$QI_URL/script.bat' -OutFile $env:TEMP\script.bat; Start-Process -FilePath $env:TEMP\script.bat -Wait}"
