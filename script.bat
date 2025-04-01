@@ -74,7 +74,7 @@ echo.
 choice /c ABCDEFGHIJKLMNOPQY /m "" >nul
 
 :: Input Handler
-if errorlevel 19 goto :install
+if errorlevel 19 goto :download
 if errorlevel 18 call :toggle aR
 if errorlevel 17 call :toggle aQ
 if errorlevel 16 call :toggle aP
@@ -101,7 +101,7 @@ if "!%1!"=="1" set "%1=2" & goto :Menu
 if "!%1!"=="2" set "%1=0" & goto :Menu
 
 :: Input Handler - Install
-:install
+:download
 cls
 echo ===== Quick Installer v1.0.0 =====
 echo.
@@ -278,3 +278,9 @@ if not "%aR%"=="0" (
         curl -L -o "%dl%\Steam.exe" https://gslibrary.github.io/Quick-Installer/dl/Steam.exe
     )
 )
+
+:: After Downloading Everything
+:install
+echo Installing with Quick Installer will be added soon.
+pause
+exit
