@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quick Installer Web</title>
+  <!-- Load the correct marked.js version -->
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+    }
+    #markdown-output {
+      border: 1px solid #ccc;
+      padding: 20px;
+      background-color: #f9f9f9;
+    }
+  </style>
+</head>
+<body>
+
+  <div id="markdown-output">
+    <!-- Rendered Markdown will appear here -->
+  </div>
+
+  <script>
+    // Ensure marked.js is properly accessed
+    document.addEventListener("DOMContentLoaded", function() {
+      fetch('https://newfies.github.io/Quick-Installer/README.md')
+        .then(response => response.text())
+        .then(markdownContent => {
+          document.getElementById('markdown-output').innerHTML = marked.parse(markdownContent);
+        })
+        .catch(err => console.error('Error loading the markdown file:', err));
+    });
+  </script>
+
+</body>
+</html>
